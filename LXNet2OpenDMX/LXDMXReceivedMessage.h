@@ -3,7 +3,7 @@
 //  LXNet2USBDMX
 //
 //  Created by Claude Heintz on 9/27/10.
-//  Copyright 2010-2016 Claude Heintz Design. All rights reserved.
+//  Copyright 2010-2019 Claude Heintz Design. All rights reserved.
 //
 /*
  See https://www.claudeheintzdesign.com/lx/opensource.html
