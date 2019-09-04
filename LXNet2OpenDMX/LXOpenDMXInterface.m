@@ -1,10 +1,13 @@
 //
 //  LXOpenDMXInterface.m
-//  LXConsole
+//  LXNet2USBDMX
 //
 //  Created by Claude Heintz on 6/23/16.
 //
 //
+/*
+ License is available at https://www.claudeheintzdesign.com/lx/opensource.html
+ */
 
 #import "LXOpenDMXInterface.h"
 #import "LXDMXEthernetInterface.h"

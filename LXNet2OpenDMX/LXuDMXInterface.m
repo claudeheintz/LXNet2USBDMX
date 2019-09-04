@@ -5,6 +5,9 @@
 //  Created by Claude Heintz on 9/3/19.
 //  Copyright © 2019 Claude Heintz. All rights reserved.
 //
+/*
+ License is available at https://www.claudeheintzdesign.com/lx/opensource.html
+ */
 
 #import "LXuDMXInterface.h"
 #import "LXDMXReceivedMessage.h"

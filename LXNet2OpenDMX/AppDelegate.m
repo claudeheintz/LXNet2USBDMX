@@ -5,6 +5,9 @@
 //  Created by Claude Heintz on 6/24/16.
 //  Copyright © 2016 Claude Heintz. All rights reserved.
 //
+/*
+ License is available at https://www.claudeheintzdesign.com/lx/opensource.html
+ */
 
 #import "AppDelegate.h"
 #import "LXDMXEthernetInterface.h"

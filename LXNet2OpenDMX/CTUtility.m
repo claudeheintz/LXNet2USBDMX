@@ -1,10 +1,13 @@
 //
 //  CTUtility.m
-//  LXNet2OpenDMX
+//  LXNet2USBDMX
 //
 //  Created by Claude Heintz on 6/25/16.
 //  Copyright © 2016 Claude Heintz. All rights reserved.
 //
+/*
+ License is available at https://www.claudeheintzdesign.com/lx/opensource.html
+ */
 
 #import "CTUtility.h"
 

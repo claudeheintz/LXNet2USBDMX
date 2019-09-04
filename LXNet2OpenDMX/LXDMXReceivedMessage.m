@@ -1,10 +1,13 @@
 //
 //  LXDMXReceivedMessage.m
-//  LXDMX
+//  LXNet2USBDMX
 //
 //  Created by Claude Heintz on 9/27/10.
 //  Copyright 2010-2016 Claude Heintz Design. All rights reserved.
 //
+/*
+ License is available at https://www.claudeheintzdesign.com/lx/opensource.html
+ */
 
 #import "LXDMXReceivedMessage.h"
 

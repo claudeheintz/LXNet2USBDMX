@@ -1,9 +1,13 @@
 //
 //  LXDMXEthernetInterface.m
+//  LXNet2USBDMX
 //
 //  Created by Claude Heintz on 12/3/09.
 //  Copyright 2009-2016 Claude Heintz Design. All rights reserved.
 //
+/*
+ License is available at https://www.claudeheintzdesign.com/lx/opensource.html
+ */
 
 #import "LXDMXEthernetInterface.h"
 #import "LXDMXReceivedMessage.h"
