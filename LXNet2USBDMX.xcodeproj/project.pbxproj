@@ -19,7 +19,7 @@
 		51CB1142231F605D0038F1BA /* LXuDMXInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BC21E5231F01D9009A0BC0 /* LXuDMXInterface.m */; };
 		51CB1143231F605D0038F1BA /* LXDMXEthernetConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 51900F6E1D23486900E7E692 /* LXDMXEthernetConfig.m */; };
 		51CB1145231F605D0038F1BA /* libftd2xx.1.4.16.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 516083981D1D77CA0004ECF9 /* libftd2xx.1.4.16.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
-		51CB1146231F605D0038F1BA /* libusb-compat-0.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 51BC21E2231EFFBC009A0BC0 /* libusb-compat-0.1.dylib */; };
+		51CB1146231F605D0038F1BA /* libusb-0.1.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 51BC21E2231EFFBC009A0BC0 /* libusb-0.1.4.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		51CB1148231F605D0038F1BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 516083811D1D63DC0004ECF9 /* Assets.xcassets */; };
 		51CB1149231F605D0038F1BA /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 51B853A01D201F2C00FB59ED /* Credits.rtf */; };
 		51CB114A231F605D0038F1BA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 516083831D1D63DC0004ECF9 /* MainMenu.xib */; };
@@ -38,7 +38,8 @@
 		5160838C1D1D64A80004ECF9 /* LXOpenDMXInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXOpenDMXInterface.h; sourceTree = "<group>"; };
 		5160838D1D1D64A80004ECF9 /* LXOpenDMXInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXOpenDMXInterface.m; sourceTree = "<group>"; };
 		516083921D1D665E0004ECF9 /* WinTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WinTypes.h; path = ../../../LXConsole/WinTypes.h; sourceTree = "<group>"; };
-		516083981D1D77CA0004ECF9 /* libftd2xx.1.4.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libftd2xx.1.4.16.dylib; path = ../../../../../usr/local/lib/libftd2xx.1.4.16.dylib; sourceTree = "<group>"; };
+		516083981D1D77CA0004ECF9 /* libftd2xx.1.4.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libftd2xx.1.4.16.dylib; path = /usr/local/lib/libftd2xx.1.4.16.dylib; sourceTree = "<absolute>"; };
+		5183AE7E2320032F002B3FB0 /* libftd2xx.1.4.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libftd2xx.1.4.16.dylib; path = /usr/local/lib/libftd2xx.1.4.16.dylib; sourceTree = "<absolute>"; };
 		51900F6C1D22EB7800E7E692 /* LXDMXCommonInclude.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXDMXCommonInclude.h; sourceTree = "<group>"; };
 		51900F6D1D23486900E7E692 /* LXDMXEthernetConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXDMXEthernetConfig.h; sourceTree = "<group>"; };
 		51900F6E1D23486900E7E692 /* LXDMXEthernetConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXDMXEthernetConfig.m; sourceTree = "<group>"; };
@@ -51,7 +52,7 @@
 		51B853A11D201F2C00FB59ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Credits.rtf; sourceTree = "<group>"; };
 		51B853A31D20821E00FB59ED /* CTrgbLedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTrgbLedView.h; sourceTree = "<group>"; };
 		51B853A41D20821E00FB59ED /* CTrgbLedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTrgbLedView.m; sourceTree = "<group>"; };
-		51BC21E2231EFFBC009A0BC0 /* libusb-compat-0.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libusb-compat-0.1.dylib"; path = "../../../../../usr/local/lib/libusb-compat-0.1.dylib"; sourceTree = "<group>"; };
+		51BC21E2231EFFBC009A0BC0 /* libusb-0.1.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libusb-0.1.4.dylib"; path = "/usr/local/lib/libusb-0.1.4.dylib"; sourceTree = "<absolute>"; };
 		51BC21E4231F01D9009A0BC0 /* LXuDMXInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXuDMXInterface.h; sourceTree = "<group>"; };
 		51BC21E5231F01D9009A0BC0 /* LXuDMXInterface.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXuDMXInterface.m; sourceTree = "<group>"; };
 		51BC21E7231F02C2009A0BC0 /* usb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = usb.h; path = "../../../../Documents/DevelopDocuments/usb/libusb-compat-0.1-master/libusb/usb.h"; sourceTree = "<group>"; };
@@ -70,7 +71,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51CB1145231F605D0038F1BA /* libftd2xx.1.4.16.dylib in Frameworks */,
-				51CB1146231F605D0038F1BA /* libusb-compat-0.1.dylib in Frameworks */,
+				51CB1146231F605D0038F1BA /* libusb-0.1.4.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,7 +146,8 @@
 		51BC21E1231EFFBC009A0BC0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				51BC21E2231EFFBC009A0BC0 /* libusb-compat-0.1.dylib */,
+				5183AE7E2320032F002B3FB0 /* libftd2xx.1.4.16.dylib */,
+				51BC21E2231EFFBC009A0BC0 /* libusb-0.1.4.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

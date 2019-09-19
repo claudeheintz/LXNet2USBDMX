@@ -59,11 +59,11 @@
     
     NSString* statusString = @"";
     
-    if ( ! [[NSFileManager defaultManager] fileExistsAtPath:@"/usr/local/lib/libftd2xx.1.4.16.dylib"] ) {
+    if ( ! [[NSFileManager defaultManager] fileExistsAtPath:LXUSBDMX_FTDID2XX_DRIVER_PATH] ) {
         [dmxbutton setEnabled:NO];
         statusString = @"Missing d2xx. ";
     }
-    if ( ! [[NSFileManager defaultManager] fileExistsAtPath:@"/usr/local/lib/libusb-0.1.4.dylib"] ) {
+    if ( ! [[NSFileManager defaultManager] fileExistsAtPath:LXUSBDMX_LIBUSB_DRIVER_PATH] ) {
         [dmxbutton setEnabled:NO];
         statusString = [NSString stringWithFormat:@"%@Missing libusb.", statusString];
     }

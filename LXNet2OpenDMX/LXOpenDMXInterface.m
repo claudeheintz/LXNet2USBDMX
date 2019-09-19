@@ -14,6 +14,14 @@
 #import "LXDMXReceivedMessage.h"
 #import "CTStatusReporter.h"
 
+#include <dlfcn.h>
+
+/*
+ *  dynamic library handle for resolving symbols
+ */
+void* _libdf2xx_dylibHandle = NULL;
+
+
 @implementation LXOpenDMXInterface
 
 
@@ -31,6 +39,14 @@
     return self;
 }
 
+// dynamic linking allows library path to be an alias (often used to allow updates of a dylib)
++(void) getDylibHandle {
+    if ( _libdf2xx_dylibHandle == NULL ) {
+        NSString* p = LXUSBDMX_FTDID2XX_DRIVER_PATH;
+        _libdf2xx_dylibHandle = dlopen([p UTF8String], RTLD_NOW|RTLD_GLOBAL);
+    }
+}
+
 
 /**
  *  attempt to open device connection
@@ -39,41 +55,70 @@
     if ( device_handle != NULL ) {
         return YES;
     }
-
-    FT_HANDLE rh = NULL;
-    FT_STATUS ft_Status = 1;
-    int tries =0;
     
+    [LXOpenDMXInterface getDylibHandle];
     
-    while ((ft_Status != FT_OK) && (tries < 3))  {
+    if ( _libdf2xx_dylibHandle != NULL ) {
+    
+        FT_HANDLE rh = NULL;
+        FT_STATUS ft_Status = 1;
+        int tries =0;
         
-        ft_Status = FT_Open(0, &rh);				//try first device found
-        if (ft_Status == FT_OK) {
-            device_handle = rh;
-            [CTStatusReporter reportStatus:@"D2XX connection opened by device" level:CT_STATUS_LEVEL_GREEN];
-            return YES;
+        
+        while ((ft_Status != FT_OK) && (tries < 3))  {
+            
+            FT_STATUS (*ftOpen) (int deviceNumber,
+                                 FT_HANDLE *pHandle);
+            ftOpen =  dlsym(_libdf2xx_dylibHandle, "FT_Open");
+            
+            ft_Status = (*ftOpen)(0, &rh);				//try first device found
+            if (ft_Status == FT_OK) {
+                device_handle = rh;
+                [CTStatusReporter reportStatus:@"D2XX connection opened by device" level:CT_STATUS_LEVEL_GREEN];
+                return YES;
+            }
+            
+            [NSThread sleepForTimeInterval:0.1];
+            tries++;
         }
-        
-        [NSThread sleepForTimeInterval:0.1];
-        tries++;
-    }
 
-    [CTStatusReporter alertUserToStatus:[NSString stringWithFormat:@"d2xx connection error: %@", [self ftErrorString:ft_Status]] level:CT_STATUS_INFORM_USER_RED];
+        [CTStatusReporter alertUserToStatus:[NSString stringWithFormat:@"d2xx connection error: %@", [self ftErrorString:ft_Status]] level:CT_STATUS_INFORM_USER_RED];
+        
+    }       //<-_libdf2xx_dylibHandle != NULL
 
     return NO;
 }
 
 -(BOOL) setupCommParameters {
-    FT_STATUS ft_Status = FT_SetBaudRate(device_handle, 250000);
-    if ( ft_Status == FT_OK ) {
-        ft_Status = FT_SetDataCharacteristics(device_handle, FT_BITS_8, FT_STOP_BITS_2, FT_PARITY_NONE);
+    FT_STATUS ft_Status = FT_INVALID_HANDLE;
+    
+    if ( _libdf2xx_dylibHandle != NULL ) {
+        
+        FT_STATUS (*ftSetBaud) (FT_HANDLE ftHandle, ULONG BaudRate );
+        ftSetBaud =  dlsym(_libdf2xx_dylibHandle, "FT_SetBaudRate");
+    
+        ft_Status = (*ftSetBaud)(device_handle, 250000);
         if ( ft_Status == FT_OK ) {
-            ft_Status= FT_SetFlowControl(device_handle, FT_FLOW_NONE, 0, 0);
+            
+            FT_STATUS (*ftSetDataCharacteristics) (FT_HANDLE ftHandle, UCHAR WordLength,
+                                                   UCHAR StopBits, UCHAR Parity);
+            ftSetDataCharacteristics =  dlsym(_libdf2xx_dylibHandle, "FT_SetDataCharacteristics");
+            
+            ft_Status = (*ftSetDataCharacteristics)(device_handle, FT_BITS_8, FT_STOP_BITS_2, FT_PARITY_NONE);
             if ( ft_Status == FT_OK ) {
-                return YES;
+                
+                FT_STATUS (*ftSetDataFlowControl) (FT_HANDLE ftHandle, USHORT FlowControl,
+                                                    UCHAR XonChar, UCHAR XoffChar);
+                ftSetDataFlowControl =  dlsym(_libdf2xx_dylibHandle, "FT_SetFlowControl");
+                
+                ft_Status = (*ftSetDataFlowControl)(device_handle, FT_FLOW_NONE, 0, 0);
+                if ( ft_Status == FT_OK ) {
+                    return YES;
+                }
             }
         }
-    }
+        
+    }       //<-_libdf2xx_dylibHandle != NULL
     
     [CTStatusReporter alertUserToStatus:[NSString stringWithFormat:@"d2xx connection error: %@", [self ftErrorString:ft_Status]] level:CT_STATUS_INFORM_USER_RED];
     return NO;
@@ -144,7 +189,11 @@
     
     // close the connection to the D2XX device
     if ( device_handle != NULL ) {
-        FT_Close(device_handle);
+        
+        FT_STATUS (*ftClose) (FT_HANDLE *pHandle);
+        ftClose =  dlsym(_libdf2xx_dylibHandle, "FT_Close");
+        
+        (*ftClose)(device_handle);
         device_handle = NULL;
     }
     
@@ -163,7 +212,11 @@
 -(BOOL) checkSendingError:(FT_STATUS) s {
     if ( s != FT_OK ) {
         if ( device_handle != NULL ) {
-            FT_Close(device_handle);
+            
+            FT_STATUS (*ftClose) (FT_HANDLE *pHandle);
+            ftClose =  dlsym(_libdf2xx_dylibHandle, "FT_Close");
+            
+            (*ftClose)(device_handle);
             device_handle = NULL;
         }
         [self statusChange:1];
@@ -203,17 +256,29 @@
                 [NSThread sleepForTimeInterval:3];      //can't re-open yet, wait 3 secs before looping & tyring again
             }
         } else {
-            s = FT_SetBreakOn(device_handle);
+    
+            FT_STATUS (*ftSetBreakOn) (FT_HANDLE *pHandle);
+            ftSetBreakOn =  dlsym(_libdf2xx_dylibHandle, "FT_SetBreakOn");
+            
+            s = (*ftSetBreakOn)(device_handle);
             if ( [self checkSendingError:s] ) {
                 usleep(DMX_BREAK_USEC);
                 
-                s = FT_SetBreakOff(device_handle);
+                FT_STATUS (*ftSetBreakOff) (FT_HANDLE *pHandle);
+                ftSetBreakOff =  dlsym(_libdf2xx_dylibHandle, "FT_SetBreakOff");
+                
+                s = (*ftSetBreakOff)(device_handle);
                 if ( [self checkSendingError:s] ) {
                     usleep(DMX_MAB_USEC);
                     gettimeofday(&tvs, NULL);
                     
                     @synchronized(self) {
-                        s = FT_Write(device_handle, (void*)_dmxdata, 513, &bytesWritten);
+                        
+                        FT_STATUS (*ftWrite) (FT_HANDLE *pHandle, LPVOID lpBuffer,
+                                              DWORD nBufferSize, LPDWORD lpBytesWritten);
+                        ftWrite =  dlsym(_libdf2xx_dylibHandle, "FT_Write");
+                        
+                        s = (*ftWrite)(device_handle, (void*)_dmxdata, 513, &bytesWritten);
                     }
                     if ( [self checkSendingError:s] ) {
                         gettimeofday(&tvc, NULL);

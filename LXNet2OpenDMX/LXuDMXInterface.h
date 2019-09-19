@@ -85,3 +85,5 @@ NS_ASSUME_NONNULL_END
 #define LXuDMX_STATE_YELLOW  4
 #define LXuDMX_STATE_ORANGE  5
 
+
+#define LXUSBDMX_LIBUSB_DRIVER_PATH @"/usr/local/lib/libusb.dylib"

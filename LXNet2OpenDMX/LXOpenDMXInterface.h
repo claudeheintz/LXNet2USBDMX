@@ -146,3 +146,5 @@
 #define DMX_PACKET_USEC 23000
 
 #define LXOPENDMX_STATUS_CHANGE_NOTIFICATION @"lxopendmx_status_change"
+
+#define LXUSBDMX_FTDID2XX_DRIVER_PATH @"/usr/local/lib/libftd2xx.1.4.16.dylib"
