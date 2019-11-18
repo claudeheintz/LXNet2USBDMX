@@ -64,7 +64,7 @@
         statusString = @"Missing d2xx. ";
     }
     if ( ! [[NSFileManager defaultManager] fileExistsAtPath:LXUSBDMX_LIBUSB_DRIVER_PATH] ) {
-        [dmxbutton setEnabled:NO];
+        [udmxbutton setEnabled:NO];
         statusString = [NSString stringWithFormat:@"%@Missing libusb.", statusString];
     }
     
