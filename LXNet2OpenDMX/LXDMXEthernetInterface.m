@@ -12,7 +12,7 @@
 #import "LXDMXEthernetInterface.h"
 #import "LXDMXReceivedMessage.h"
 #import "CTUtility.h"
-#import "CTNetUtilities.h"
+//#import "CTNetUtilities.h"
 #include <sys/socket.h>
 #include <sys/_select.h>
 #include <netinet/in.h>

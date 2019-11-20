@@ -48,3 +48,16 @@ NSString* substringAfterSeperator(NSString* s, NSString* ss);
 NSArray* substringsUsingSeperator(NSString* s, NSString* ss);
 int intFromHex (char a, char b);
 int decodeHexCharacter(unichar cc);
+
+// net utilities
+
+int ints2saddr(int d, int c, int b, int a);
+
+void packInt16Big(unsigned char* c, int i);
+void packInt16Little(unsigned char* c, int i);
+void packInt32Little(unsigned char* c, int i);
+
+BOOL equalSocketAddr(struct sockaddr_in a, struct sockaddr_in b);
+
+NSArray* getNetIPAddresses( void );
+NSString* getBroadcastAddressForAddress(NSString* addr);

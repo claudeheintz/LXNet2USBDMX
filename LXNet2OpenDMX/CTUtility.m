@@ -10,6 +10,9 @@
  */
 
 #import "CTUtility.h"
+#include "ifaddrs.h"
+#include <arpa/inet.h>
+#include <netinet/in.h>
 
 @implementation CTUtility
 
@@ -80,4 +83,86 @@ int decodeHexCharacter(unichar cc) {
         return cc-'A'+10;
     }
     return 0;
+}
+
+#pragma mark net utilities
+
+//note network byte order reversed so 1st number of written is lsb
+int ints2saddr(int d, int c, int b, int a) {
+    return (a << 24) + (b << 16) + (c << 8) + d;
+}
+
+void packInt16Big(unsigned char* c, int i) {
+    c[0] = ((i & 0xff00) >> 8);
+    c[1] = i & 0xff;
+}
+
+void packInt16Little(unsigned char* c, int i) {
+    c[1] = ((i & 0xff00) >> 8);
+    c[0] = i & 0xff;
+}
+
+void packInt32Little(unsigned char* c, int i) {
+    c[3] = ((i & 0xff000000) >> 24);
+    c[2] = ((i & 0xff0000) >> 16);
+    c[1] = ((i & 0xff00) >> 8);
+    c[0] = i & 0xff;
+}
+
+BOOL equalSocketAddr(struct sockaddr_in a, struct sockaddr_in b) {
+    if ( a.sin_family == b.sin_family) {
+        if ( a.sin_port == b.sin_port) {
+            if ( a.sin_addr.s_addr == b.sin_addr.s_addr) {
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
+
+NSArray* getNetIPAddresses() {
+    NSMutableArray* addrarr=[[NSMutableArray alloc] init];
+    struct ifaddrs *ifap, *ifa;
+    int fam;
+    const char* addr;
+    if ( getifaddrs(&ifap) == 0 ) {
+        ifa = ifap;
+        while ( ifa != NULL ) {
+            fam = ((struct sockaddr_in *) ifa->ifa_addr)->sin_family;
+            if ( fam == AF_INET ) {
+                addr = inet_ntoa(((struct sockaddr_in *) ifa->ifa_addr)->sin_addr);
+                [addrarr addObject:[NSString stringWithCString:addr encoding:NSUTF8StringEncoding]];
+            }
+            ifa = ifa->ifa_next;
+        }
+    }
+    return addrarr;
+}
+
+/*
+ find a broadcast address for an IP address in the list of available interfaces
+ use getifaddrs to retireive a linked list of ifaddrs structures
+ find the one with the ip address matching the NSString addr
+ and return the struct's broadcast address
+*/
+
+NSString* getBroadcastAddressForAddress(NSString* addr) {
+    struct ifaddrs *ifap, *ifa;
+    int fam;
+    const char* ifaddr;
+    if ( getifaddrs(&ifap) == 0 ) {
+        ifa = ifap;
+        while ( ifa != NULL ) {
+            fam = ((struct sockaddr_in *) ifa->ifa_addr)->sin_family;
+            if ( fam == AF_INET ) {
+                ifaddr = inet_ntoa(((struct sockaddr_in *) ifa->ifa_addr)->sin_addr);
+                if ( [addr isEqualToString:[NSString stringWithCString:ifaddr encoding:NSUTF8StringEncoding]] ) {
+                    ifaddr = inet_ntoa(((struct sockaddr_in *) ifa->ifa_broadaddr)->sin_addr);
+                    return [NSString stringWithCString:ifaddr encoding:NSUTF8StringEncoding];
+                }
+            }
+            ifa = ifa->ifa_next;
+        }
+    }
+    return NULL;
 }

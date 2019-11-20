@@ -11,7 +11,6 @@
 		51CB113A231F605D0038F1BA /* CTStatusReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D8CFE31D30056500633197 /* CTStatusReporter.m */; };
 		51CB113B231F605D0038F1BA /* CTrgbLedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51B853A41D20821E00FB59ED /* CTrgbLedView.m */; };
 		51CB113C231F605D0038F1BA /* CTUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 51ABDCA31D1F4CC300B45216 /* CTUtility.m */; };
-		51CB113D231F605D0038F1BA /* CTNetUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 513D5DAB1F72BD1C00D70D65 /* CTNetUtilities.m */; };
 		51CB113E231F605D0038F1BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5160837F1D1D63DC0004ECF9 /* main.m */; };
 		51CB113F231F605D0038F1BA /* LXDMXReceivedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 51ABDC931D1EC3AC00B45216 /* LXDMXReceivedMessage.m */; };
 		51CB1140231F605D0038F1BA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5160837C1D1D63DC0004ECF9 /* AppDelegate.m */; };
@@ -27,8 +26,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		513D5DAA1F72BD1C00D70D65 /* CTNetUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CTNetUtilities.h; path = ../../../LX/ct/CTNetUtilities.h; sourceTree = "<group>"; };
-		513D5DAB1F72BD1C00D70D65 /* CTNetUtilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CTNetUtilities.m; path = ../../../LX/ct/CTNetUtilities.m; sourceTree = "<group>"; };
 		5160837B1D1D63DC0004ECF9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5160837C1D1D63DC0004ECF9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		5160837F1D1D63DC0004ECF9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -37,7 +34,6 @@
 		516083861D1D63DC0004ECF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5160838C1D1D64A80004ECF9 /* LXOpenDMXInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXOpenDMXInterface.h; sourceTree = "<group>"; };
 		5160838D1D1D64A80004ECF9 /* LXOpenDMXInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXOpenDMXInterface.m; sourceTree = "<group>"; };
-		516083921D1D665E0004ECF9 /* WinTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WinTypes.h; path = ../../../LXConsole/WinTypes.h; sourceTree = "<group>"; };
 		516083981D1D77CA0004ECF9 /* libftd2xx.1.4.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libftd2xx.1.4.16.dylib; path = /usr/local/lib/libftd2xx.1.4.16.dylib; sourceTree = "<absolute>"; };
 		5183AE7E2320032F002B3FB0 /* libftd2xx.1.4.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libftd2xx.1.4.16.dylib; path = /usr/local/lib/libftd2xx.1.4.16.dylib; sourceTree = "<absolute>"; };
 		51900F6C1D22EB7800E7E692 /* LXDMXCommonInclude.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXDMXCommonInclude.h; sourceTree = "<group>"; };
@@ -56,10 +52,11 @@
 		51BC21E4231F01D9009A0BC0 /* LXuDMXInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXuDMXInterface.h; sourceTree = "<group>"; };
 		51BC21E5231F01D9009A0BC0 /* LXuDMXInterface.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXuDMXInterface.m; sourceTree = "<group>"; };
 		51BC21E7231F02C2009A0BC0 /* usb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = usb.h; path = "../../../../Documents/DevelopDocuments/usb/libusb-compat-0.1-master/libusb/usb.h"; sourceTree = "<group>"; };
-		51BC21E8231F02DE009A0BC0 /* uDMX_cmds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = uDMX_cmds.h; path = "../../../../Documents/DevelopDocuments/control protocols/udmx-master/common/uDMX_cmds.h"; sourceTree = "<group>"; };
 		51CB1136231F5FFD0038F1BA /* LXNet2USBDMX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LXNet2USBDMX.entitlements; sourceTree = "<group>"; };
 		51CB114F231F605D0038F1BA /* LXNet2USBDMX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LXNet2USBDMX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51CB1150231F605D0038F1BA /* LXNet2USBDMX copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "LXNet2USBDMX copy-Info.plist"; path = "/Users/claude/develop/dmx&osc/LXNet2OpenDMX/LXNet2USBDMX copy-Info.plist"; sourceTree = "<absolute>"; };
+		51CE7A182385F81C0072536A /* WinTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinTypes.h; sourceTree = "<group>"; };
+		51CE7A192385F8690072536A /* uDMX_cmds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uDMX_cmds.h; sourceTree = "<group>"; };
 		51D8CFE21D30056500633197 /* CTStatusReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTStatusReporter.h; sourceTree = "<group>"; };
 		51D8CFE31D30056500633197 /* CTStatusReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTStatusReporter.m; sourceTree = "<group>"; };
 		51D8CFE51D3006AF00633197 /* user_defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = user_defaults.plist; sourceTree = "<group>"; };
@@ -114,9 +111,7 @@
 				51ABDC921D1EC3AC00B45216 /* LXDMXReceivedMessage.h */,
 				51ABDC931D1EC3AC00B45216 /* LXDMXReceivedMessage.m */,
 				51900F6C1D22EB7800E7E692 /* LXDMXCommonInclude.h */,
-				516083921D1D665E0004ECF9 /* WinTypes.h */,
-				513D5DAA1F72BD1C00D70D65 /* CTNetUtilities.h */,
-				513D5DAB1F72BD1C00D70D65 /* CTNetUtilities.m */,
+				51CE7A182385F81C0072536A /* WinTypes.h */,
 				51ABDCA21D1F4CC300B45216 /* CTUtility.h */,
 				51ABDCA31D1F4CC300B45216 /* CTUtility.m */,
 				51D8CFE21D30056500633197 /* CTStatusReporter.h */,
@@ -124,7 +119,7 @@
 				51B853A31D20821E00FB59ED /* CTrgbLedView.h */,
 				51B853A41D20821E00FB59ED /* CTrgbLedView.m */,
 				51BC21E7231F02C2009A0BC0 /* usb.h */,
-				51BC21E8231F02DE009A0BC0 /* uDMX_cmds.h */,
+				51CE7A192385F8690072536A /* uDMX_cmds.h */,
 				516083811D1D63DC0004ECF9 /* Assets.xcassets */,
 				516083831D1D63DC0004ECF9 /* MainMenu.xib */,
 				51B853A01D201F2C00FB59ED /* Credits.rtf */,
@@ -232,7 +227,6 @@
 				51CB113A231F605D0038F1BA /* CTStatusReporter.m in Sources */,
 				51CB113B231F605D0038F1BA /* CTrgbLedView.m in Sources */,
 				51CB113C231F605D0038F1BA /* CTUtility.m in Sources */,
-				51CB113D231F605D0038F1BA /* CTNetUtilities.m in Sources */,
 				51CB113E231F605D0038F1BA /* main.m in Sources */,
 				51CB113F231F605D0038F1BA /* LXDMXReceivedMessage.m in Sources */,
 				51CB1140231F605D0038F1BA /* AppDelegate.m in Sources */,
@@ -378,6 +372,7 @@
 				CODE_SIGN_ENTITLEMENTS = LXNet2USBDMX.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = B1119.1;
 				DEVELOPMENT_TEAM = T95243XU48;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = /usr/local/lib;
@@ -398,6 +393,7 @@
 				CODE_SIGN_ENTITLEMENTS = LXNet2USBDMX.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = B1119.1;
 				DEVELOPMENT_TEAM = T95243XU48;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = /usr/local/lib;
