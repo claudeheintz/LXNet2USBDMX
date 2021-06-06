@@ -59,10 +59,6 @@ LXDMXEthernetInterface* _sharedDMXEthernetInterface = NULL;
 	return self;
 }
 
-int addressFrom4() {
-	return 0;
-}
-
 +(LXDMXEthernetInterface*) sharedDMXEthernetInterface {
 	return _sharedDMXEthernetInterface;
 }

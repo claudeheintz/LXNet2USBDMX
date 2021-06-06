@@ -77,6 +77,7 @@ static usb_dev_handle   *findDevice(void)
     struct usb_bus      *bus;
     struct usb_device   *dev;
     usb_dev_handle      *handle = 0;
+    struct usb_device   *some_dev = 0;
     
     if ( _libusb_dylibHandle != NULL ) {
         
@@ -117,9 +118,11 @@ static usb_dev_handle   *findDevice(void)
                         reportStatus([NSString stringWithFormat:@"warning: cannot query manufacturer for device: %s\n", (*usbErrorString)()], CT_STATUS_LEVEL_RED);
                         goto skipDevice;
                     }
-                    /* fprintf(stderr, "seen device from vendor ->%s<-\n", string); */
-                    if(strcmp(string, "www.anyma.ch") != 0)
+                    some_dev = dev;
+                    if(strcmp(string, "www.anyma.ch") != 0) {
+                        fprintf(stderr, "skipping device from vendor ->%s<-\n", string);
                         goto skipDevice;
+                    }
                     len = usbGetStringAscii(handle, dev->descriptor.iProduct, 0x0409, string, sizeof(string));
                     if(len < 0){
                         reportStatus([NSString stringWithFormat:@"warning: cannot query product for device: %s\n", (*usbErrorString)()], CT_STATUS_LEVEL_RED);;
@@ -128,15 +131,24 @@ static usb_dev_handle   *findDevice(void)
                     /* fprintf(stderr, "seen product ->%s<-\n", string); */
                     if(strcmp(string, "uDMX") == 0)
                         break;
+                    
                 skipDevice:
                     (*usbClose)(handle);
                     handle = NULL;
                 }
-            }
+            }           // <---------- for dev=bus->devices...->next ---------->
             if(handle)
                 break;
         }
-    }
+        
+        if( ! handle ) {            // fall back to some found device
+            if ( some_dev ) {
+                reportStatus(@"Could not find uDMX device, will try some usb device (with vid=0x16c0 pid=0x5e4) that was found.", CT_STATUS_LEVEL_RED);
+                handle = (*usbOpen)(some_dev);
+            }
+        }
+        
+    }                   // <---------- _libusb_dylibHandle != NULL ---------->
     
     if( ! handle ) {
         reportStatus(@"Could not find uDMX device (www.anyma.ch/uDMX)", CT_STATUS_LEVEL_RED);

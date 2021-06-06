@@ -144,7 +144,7 @@
 }
 
 -(void) openDMXStatusUpdate:(NSNotification*) note {
-    dmxStatus.ledstate =[[note object] integerValue];
+    dmxStatus.ledstate = [[note object] integerValue];
     if ( [openDMXInterface isSending] ) {
         [dmxbutton setTitle:@"Stop OpenDMX"];
     } else {

@@ -253,7 +253,7 @@ void* _libdf2xx_dylibHandle = NULL;
                 }
             } else {
                 [self checkSendingError:FT_OTHER_ERROR];
-                [NSThread sleepForTimeInterval:3];      //can't re-open yet, wait 3 secs before looping & tyring again
+                [NSThread sleepForTimeInterval:3];      //can't re-open yet, wait 3 secs before looping & trying again
             }
         } else {
     
