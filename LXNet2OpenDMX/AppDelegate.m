@@ -146,9 +146,9 @@
 -(void) openDMXStatusUpdate:(NSNotification*) note {
     dmxStatus.ledstate = [[note object] integerValue];
     if ( [openDMXInterface isSending] ) {
-        [dmxbutton setTitle:@"Stop OpenDMX"];
+        //[dmxbutton setTitle:@"Stop OpenDMX"];
     } else {
-        [dmxbutton setTitle:@"Start OpenDMX"];
+        //[dmxbutton setTitle:@"Start OpenDMX"];
     }
 }
 
@@ -182,13 +182,22 @@
     if ( openDMXInterface == NULL ) {
         openDMXInterface = [[LXOpenDMXInterface alloc] init];
         [openDMXInterface startSending];
-    } else {
-        if ( [openDMXInterface isSending] ) {   // STOP
+        if ( [openDMXInterface isSending] ) {
+            [dmxbutton setTitle:@"Stop OpenDMX"];
+        } else {
             [openDMXInterface stopSending];
+            while ( [openDMXInterface isSending] ) {
+                [NSThread sleepForTimeInterval:0.5];
+            }
+            openDMXInterface = NULL;
+            [dmxbutton setTitle:@"Start OpenDMX"];
         }
+    } else {
+        [openDMXInterface stopSending];
         while ( [openDMXInterface isSending] ) {
             [NSThread sleepForTimeInterval:0.5];
         }
+        [dmxbutton setTitle:@"Start OpenDMX"];
         openDMXInterface = NULL;
     }
 }
