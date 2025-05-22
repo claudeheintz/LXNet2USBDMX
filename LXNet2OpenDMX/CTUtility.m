@@ -120,7 +120,7 @@ BOOL equalSocketAddr(struct sockaddr_in a, struct sockaddr_in b) {
     return NO;
 }
 
-NSArray* getNetIPAddresses() {
+NSArray* getNetIPAddresses( void ) {
     NSMutableArray* addrarr=[[NSMutableArray alloc] init];
     struct ifaddrs *ifap, *ifa;
     int fam;
